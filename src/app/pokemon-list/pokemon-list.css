@@ -5,7 +5,7 @@
     padding: 1rem;
 }
 
-.region-heading {
+.region {
     color: #333;
     border-bottom: 2px solid #333;
     padding-bottom: 0.5rem;
@@ -58,7 +58,7 @@ h3 {
 }
 
 .badge-name {
-    color: #e65100;
+    color: #2b2b2b;
 }
 
 .desc { 

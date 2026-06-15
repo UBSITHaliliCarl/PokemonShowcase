@@ -32,22 +32,22 @@ export class PokemonService {
     {
       region: 'Kanto',
       pokemon: [
-        { name: 'Charizard', type: 'Fire / Flying', heldItem: 'Charizardite', description: 'Flies around the sky in search of powerful opponents. It breathes fire of such great heat that it melts anything.' },
-        { name: 'Gengar', type: 'Ghost / Poison', heldItem: 'Life Orb', description: 'Hides in shadows. It is said that if Gengar is hiding in a room, the temperature drops by nearly 10 degrees.' }
+        { name: 'Dragonite', type: 'Dragon / Flying', heldItem: 'Heavy-Duty Boots', description: 'It is said to make its home somewhere in the sea. It guides crews of shipwrecks to safety through rough waters.' },
+        { name: 'Arcanine', type: 'Fire', heldItem: 'Choice Band', description: 'An ancient and majestic Pokémon. Its magnificent bark conveys a sense of power, and anyone who hears it can’t help but grovel.' }
       ]
     },
     {
       region: 'Johto',
       pokemon: [
-        { name: 'Tyranitar', type: 'Rock / Dark', heldItem: 'Assault Vest', description: 'Its body cannot be harmed by any sort of attack, so it is very eager to make challenges against enemies.' },
-        { name: 'Ampharos', type: 'Electric', heldItem: 'Light Clay', description: 'The bright light on its tail can be seen from far away. It has been treasured since ancient times as a beacon.' }
+        { name: 'Scizor', type: 'Bug / Steel', heldItem: 'Life Orb', description: 'It intimidates foes by upraising its eye-patterned pincers. It swings its heavy, steel pincers to smash any target.' },
+        { name: 'Suicune', type: 'Water', heldItem: 'Leftovers', description: 'Said to be the reincarnation of north winds, it can instantly purify filthy, murky water.' }
       ]
     },
     {
       region: 'Hoenn',
       pokemon: [
-        { name: 'Blaziken', type: 'Fire / Fighting', heldItem: 'Choice Band', description: 'When facing a tough foe, it looses flames from its wrists. Its powerful legs let it jump clear over buildings.' },
-        { name: 'Gardevoir', type: 'Psychic / Fairy', heldItem: 'Leftovers', description: 'It has the power to predict the future. It flashes its life to protect its Trainer.' }
+        { name: 'Metagross', type: 'Steel / Psychic', heldItem: 'Assault Vest', description: 'With four brains linked together, it has the intelligence of a supercomputer. It easily outperforms humans.' },
+        { name: 'Salamence', type: 'Dragon / Flying', heldItem: 'Salamencite', description: 'It expressed its strong desire to fly through evolution. It flies around happily, spouting intense bursts of flame.' }
       ]
     }
   ];
@@ -70,40 +70,42 @@ export class PokemonService {
   readonly pokemon = signal<RegionData[]>(this.regionalPokemon).asReadonly();
   readonly inventory = signal<MartItem[]>(this.martInventory).asReadonly();
   readonly cart = this.cartSignal.asReadonly();
-  readonly cartTotal = computed(() => {
-    return this.cartSignal().reduce((total, item) => total + (item.product.price * item.quantity), 0);
-  });
+  
+  readonly cartTotal = computed(() => 
+    this.cartSignal().reduce((total, item) => total + (item.product.price * item.quantity), 0)
+  );
 
   addToCart(item: MartItem): void {
     this.cartSignal.update((currentCart) => {
-      const existingIndex = currentCart.findIndex((cartItem) => cartItem.product.id === item.id);
-      if (existingIndex > -1) {
-        const updatedCart = [...currentCart];
-        updatedCart[existingIndex] = {
-          ...updatedCart[existingIndex],
-          quantity: updatedCart[existingIndex].quantity + 1
-        };
-        return updatedCart;
+      const exists = currentCart.some((cartItem) => cartItem.product.id === item.id);
+      
+      if (exists) {
+        return currentCart.map((cartItem) => 
+          cartItem.product.id === item.id 
+            ? { ...cartItem, quantity: cartItem.quantity + 1 } 
+            : cartItem
+        );
       }
+      
       return [...currentCart, { product: item, quantity: 1 }];
     });
   }
 
   removeFromCart(itemId: number): void {
     this.cartSignal.update((currentCart) => {
-      const existingIndex = currentCart.findIndex((cartItem) => cartItem.product.id === itemId);
-      if (existingIndex > -1) {
-        const updatedCart = [...currentCart];
-        if (updatedCart[existingIndex].quantity > 1) {
-          updatedCart[existingIndex] = {
-            ...updatedCart[existingIndex],
-            quantity: updatedCart[existingIndex].quantity - 1
-          };
-          return updatedCart;
-        }
-        return updatedCart.filter((cartItem) => cartItem.product.id !== itemId);
+      const targetItem = currentCart.find((cartItem) => cartItem.product.id === itemId);
+      
+      if (!targetItem) return currentCart;
+
+      if (targetItem.quantity > 1) {
+        return currentCart.map((cartItem) => 
+          cartItem.product.id === itemId 
+            ? { ...cartItem, quantity: cartItem.quantity - 1 } 
+            : cartItem
+        );
       }
-      return currentCart;
+
+      return currentCart.filter((cartItem) => cartItem.product.id !== itemId);
     });
   }
 

@@ -1,54 +1,56 @@
 <div class="mart-layout">
-    <div class="inventory-pane">
-      <h2>PokeMart Items Shop</h2>
-      <div class="inventory-grid">
-        @for (item of inventory(); track item.id) {
-          <div class="item-card">
-            <div class="item-header">
-              <h4>{{ item.name }}</h4>
-              <span class="price-tag">₽{{ item.price }}</span>
-            </div>
-            <p class="item-details">{{ item.description }}</p>
-            <button class="btn btn-add" (click)="buyItem(item)">Add to Bag</button>
+  <div class="inventory-pane">
+    <h2 class="pane-title">🏪 {{ shopHeading() }}</h2>
+    <div class="inventory-grid">
+      @for (item of inventory(); track item.id) {
+        <div class="item-card">
+          <div class="item-visual-box">
+            <span class="item-emoji">📦</span>
           </div>
-        }
-      </div>
-    </div>
-  
-    <div class="cart-pane">
-      <h2>Your Shopping Bag</h2>
-      
-      @if (cart().length === 0) {
-        <div class="empty-state">
-          Your cart is empty. Pack some items for your journey!
-        </div>
-      } @else {
-        <div class="cart-list">
-          @for (item of cart(); track item.product.id) {
-            <div class="cart-item">
-              <div class="cart-item-info">
-                <span class="cart-item-name">{{ item.product.name }}</span>
-                <small class="cart-item-meta">₽{{ item.product.price }} × {{ item.quantity }}</small>
-              </div>
-              <div class="cart-item-actions">
-                <span class="subtotal">₽{{ item.product.price * item.quantity }}</span>
-                <button class="btn-remove" (click)="removeItem(item.product.id)">×</button>
-              </div>
-            </div>
-          }
-        </div>
-        
-        <div class="cart-summary">
-          <div class="total-row">
-            <span>Grand Total:</span>
-            <span class="total-amount">₽{{ cartTotal() }}</span>
+          <div class="item-header">
+            <h4>{{ item.name }}</h4>
+            <span class="price-tag">₽{{ item.price }}</span>
           </div>
-          <button class="btn btn-checkout" (click)="checkout()">
-            Check Out Items
-          </button>
+          <p class="desc">{{ item.description }}</p>
+          <button class="btn-add" (click)="buyItem(item)">🛒 Add to Bag</button>
         </div>
       }
     </div>
-  
   </div>
-  
+
+  <div class="cart-pane">
+    <h2 class="pane-title">🎒 Your Shopping Bag</h2>
+   
+    @if (cart().length === 0) {
+      <div class="empty-state">
+        <span class="empty-emoji">🫙</span>
+        <p>Your bag is empty.<br>Pack some items for your journey!</p>
+      </div>
+    } @else {
+      <div class="cart-list">
+        @for (item of cart(); track item.product.id) {
+          <div class="cart-item">
+            <div class="cart-item-info">
+              <span class="cart-item-name">📦 {{ item.product.name }}</span>
+              <small class="cart-item-meta">₽{{ item.product.price }} × {{ item.quantity }}</small>
+            </div>
+            <div class="cart-item-actions">
+              <span class="subtotal">₽{{ item.product.price * item.quantity }}</span>
+              <button class="btn-remove" (click)="removeItem(item.product.id)">×</button>
+            </div>
+          </div>
+        }
+      </div>
+     
+      <div class="cart-summary-block">
+        <div class="total-row">
+          <span>Grand Total:</span>
+          <span class="total-amount">₽{{ cartTotal() }}</span>
+        </div>
+        <button class="btn-checkout" (click)="checkout()">
+          💳 Check Out Items
+        </button>
+      </div>
+    }
+  </div>
+</div>

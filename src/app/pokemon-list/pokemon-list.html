@@ -1,0 +1,19 @@
+<div class="showcase-container">
+    <h2 class="showcase-title">My Favorite Regional Pokémon</h2>
+    @for (regionGroup of regionalData(); track regionGroup.region) {
+      <div class="region-section">
+        <h3 class="region-heading">{{ regionGroup.region }} Region</h3>
+        <div class="pokemon-grid">
+          @for (poke of regionGroup.pokemon; track poke.name) {
+            <div class="pokemon-card">
+              <h4 class="pokemon-name">{{ poke.name }}</h4>
+              <p class="pokemon-stat"><strong>Type:</strong> <span class="badge">{{ poke.type }}</span></p>
+              <p class="pokemon-stat"><strong>Held Item:</strong> <span class="item-text">{{ poke.heldItem }}</span></p>
+              <p class="pokemon-desc">"{{ poke.description }}"</p>
+            </div>
+          }
+        </div>
+      </div>
+    }
+  </div>
+  

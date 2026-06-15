@@ -1,0 +1,138 @@
+.mart-layout {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 0 auto;
+    font-family: Arial, sans-serif;
+    padding: 1rem;
+}
+
+.inventory-pane {
+    flex: 2;
+    min-width: 320px;
+}
+
+.cart-pane {
+    flex: 1;
+    min-width: 280px;
+    border: 2px solid #333;
+    background: #fafafa;
+    border-radius: 12px;
+    padding: 1.5rem;
+    height: fit-content;
+}
+
+.inventory-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1.5rem;
+}
+
+.card {
+    border: 2px solid #333;
+    padding: 1.5rem;
+    border-radius: 12px;
+    background: white;
+    text-align: left;
+    box-shadow: 0 4px 6px #333;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+h3 { 
+    margin: 0.5rem 0 0.1rem 0; 
+    text-align: center; 
+}
+
+.age-info { 
+    font-size: 0.95rem; 
+    text-align: center; 
+    color: #000; 
+    font-weight: bold;
+    margin: 0 0 0.5rem 0; 
+}
+
+.desc { 
+    font-style: italic; 
+    font-size: 0.85rem; 
+    color: #555; 
+    margin: 0.5rem 0; 
+    padding: 0.5rem; 
+    background-color: #f9f9f9; 
+    border-radius: 4px; 
+    line-height: 1.4;
+}
+
+.btn-add { 
+    color: white; 
+    border: none; 
+    padding: 0.5rem; 
+    margin: 0.5rem 0 0 0; 
+    border-radius: 6px; 
+    cursor: pointer; 
+    font-weight: bold; 
+    font-size: 0.8rem; 
+    background-color: #333;
+    width: 100%;
+}
+
+.toggle-btn:hover {
+    background-color: #357abd;
+}
+
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 0;
+    border-bottom: 1px dashed #333;
+}
+
+.team-section h4 { 
+    margin: 0; 
+    font-size: 0.9rem; 
+    color: #333; 
+    font-weight: bold;
+}
+
+.team-section ul { 
+    padding: 0; 
+    margin: 0; 
+    list-style: none;
+    font-size: 0.85rem; 
+    color: #666;
+}
+
+.btn-remove {
+    background-color: #ff0000;
+    color: white;
+    border: none;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cart-total-section {
+    margin-top: 1.5rem;
+    padding-top: 1rem;
+    border-top: 2px solid #333;
+}
+
+.btn-checkout {
+    background-color: #757575;
+    color: white;
+    border: none;
+    padding: 0.75rem;
+    width: 100%;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-top: 1rem;
+}

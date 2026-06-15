@@ -1,0 +1,36 @@
+.pokemon-navbar {
+    background-color: #1a1a2e;
+    padding: 0.8rem 2rem;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    font-family: Arial, sans-serif;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.nav-links-right {
+    display: flex;
+    gap: 2rem;
+}
+
+.nav-links-right a {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: bold;
+    padding: 0.4rem 0.8rem;
+    border-radius: 4px;
+    transition: background-color 0.15s ease-in-out;
+}
+
+.nav-links-right a:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+}
+
+.nav-links-right a.active {
+    background-color: rgba(0, 0, 0, 0.15);
+}
+
+.main-content-area {
+    padding: 1.5rem;
+}

@@ -14,10 +14,13 @@
 
 .pokemon-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(460px, 1fr));
     gap: 1.5rem;
+    justify-content: center;
+    width: 100%;
 }
-.card {
+
+.pokemon-card {
     border: 2px solid #333;
     padding: 1.5rem;
     border-radius: 12px;
@@ -29,26 +32,26 @@
     transition: transform 0.2s ease-in-out;
 }
 
-.card:hover {
-    transform: translateY(-4px);
-}
-
 .badge-icon { 
     font-size: 2rem; 
     text-align: center; 
 }
 
-h3 { 
+h2 { 
     margin: 0.5rem 0 0.1rem 0; 
     text-align: center; 
     color: #222;
 }
 
-.age-info { 
-    font-size: 0.85rem; 
-    text-align: center; 
-    color: #666; 
+.pokemon-stat { 
+    font-size: 0.9rem;
+    color: #222; 
     margin: 0 0 0.5rem 0; 
+}
+
+.pokemon-card { 
+    font-size: 2rem;
+    color: #222;
 }
 
 .city, .badge-name { 
@@ -61,7 +64,7 @@ h3 {
     color: #2b2b2b;
 }
 
-.desc { 
+.pokemon-desc { 
     font-style: italic; 
     font-size: 0.85rem; 
     color: #555; 
